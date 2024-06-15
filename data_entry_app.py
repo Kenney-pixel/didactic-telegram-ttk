@@ -22,5 +22,7 @@ r_info.grid(sticky=(tk.W + tk.E))
 for i in range(3):
     r_info.columnconfigure(i, weight=1)
 
+# Date
+
 # Execute mainloop
 root.mainloop()
