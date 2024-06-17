@@ -5,6 +5,9 @@ root = tk.Tk()
 root.title('ABQ Data Entry Application')
 root.columnconfigure(0, weight=1)
 
+# Create the dict to hold our variables
+variables = dict()
+
 # Application heading
 ttk.Label(
         root,
@@ -23,6 +26,11 @@ for i in range(3):
     r_info.columnconfigure(i, weight=1)
 
 # Date
+variables['Date'] = tk.StringVar()
+ttk.Label(r_info, text='Date').grid(row=0, column=0)
+ttk.Entry(
+        r_info, textvariable=variables['Date']
+        ).grid(row=1, column=0, sticky=(tk.W + tk.E))
 
 # Execute mainloop
 root.mainloop()
