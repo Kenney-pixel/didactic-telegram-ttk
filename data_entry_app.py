@@ -36,7 +36,10 @@ variables['Time'] = tk.StringVar()
 ttk.Label(r_info, text='Time').grid(row=0, column=1)
 ttk.Combobox(r_info, textvariable=variables['Time'], values=time_values).grid(row=1, column=1, sticky=(tk.W + tk.E))
 
-
+# Technician
+variables['Technician'] = tk.StringVar()
+ttk.Label(r_info, text='Technician').grid(row=0, column=2)
+ttk.Entry(r_info, textvariable=variables['Technician']).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
 # Execute mainloop
 root.mainloop()
