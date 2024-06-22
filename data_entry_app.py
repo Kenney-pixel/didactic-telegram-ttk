@@ -41,5 +41,15 @@ variables['Technician'] = tk.StringVar()
 ttk.Label(r_info, text='Technician').grid(row=0, column=2)
 ttk.Entry(r_info, textvariable=variables['Technician']).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
+# Lab
+variables['Lab'] = tk.StringVar()
+ttk.Label(r_info, text='Lab').grid(row=2, column=0)
+labframe = ttk.Frame(r_info)
+for lab in ('A', 'B', 'C'):
+    ttk.Radiobutton(
+            labframe, value=lab, text=lab, variable=variables['Lab']
+            ).pack(side=tk.LEFT, expand=True)
+labframe.grid(row=3, column=0, sticky=(tk.W + tk.E))
+
 # Execute mainloop
 root.mainloop()
