@@ -51,5 +51,14 @@ for lab in ('A', 'B', 'C'):
             ).pack(side=tk.LEFT, expand=True)
 labframe.grid(row=3, column=0, sticky=(tk.W + tk.E))
 
+# Plot
+variables['Plot'] = tk.IntVar()
+ttk.Label(r_info, text='Plot').grid(row=2, column=1)
+ttk.Combobox(
+        r_info,
+        textvariable=variables['Plot'],
+        values=list(range(1, 21))
+        ).grid(row=3, column=1, sticky=(tk.W + tk.E))
+
 # Execute mainloop
 root.mainloop()
