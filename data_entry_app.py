@@ -67,6 +67,21 @@ ttk.Entry(
         r_info,
         textvariable=variables['Seed Sample']
         ).grid(row=3, column=2, sticky=(tk.W + tk.E))
+
+# Environment information frame
+e_info = ttk.LabelFrame(drf, text="Environment Data")
+e_info.grid(sticky=tk.W + tk.E)
+for i in range(3):
+    e_info.columnconfigure(i, weight=1)
+
+# Humidity
+variables['Humidity'] = tk.DoubleVar()
+ttk.Label(e_info, text="Humdity (g/m^3)").grid(row=0, column=0)
+ttk.Spinbox(
+        e_info, textvariable=variables['Humidity'],
+        from_=0.5, to=52.0, increment=0.01,
+        ).grid(row=1, column=0, sticky=(tk.W + tk.E))
+
 # Next
 
 # Execute mainloop
