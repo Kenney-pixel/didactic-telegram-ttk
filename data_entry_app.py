@@ -60,5 +60,14 @@ ttk.Combobox(
         values=list(range(1, 21))
         ).grid(row=3, column=1, sticky=(tk.W + tk.E))
 
+# Seed Sample
+variables['Seed Sample'] = tk.StringVar()
+ttk.Label(r_info, text='Seed Sample').grid(row=2, column=2)
+ttk.Entry(
+        r_info,
+        textvariable=variables['Seed Sample']
+        ).grid(row=3, column=2, sticky=(tk.W + tk.E))
+# Next
+
 # Execute mainloop
 root.mainloop()
