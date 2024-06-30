@@ -91,6 +91,14 @@ ttk.Spinbox(
         ).grid(row=1, column=1, sticky=(tk.W + tk.E))
 
 # Temperature
+variables['Temperature'] = tk.DoubleVar()
+ttk.Label(e_info, text='Temperature (C)').grid(row=0, column=2)
+ttk.Spinbox(
+        e_info, textvariable=variables['Temperature'],
+        from_=4, to=40, increment=.01
+        ).grid(row=1, column=2, sticky=(tk.W + tk.E))
+
+# Equipment Fault
 # Next
 
 # Execute mainloop
