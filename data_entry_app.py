@@ -104,5 +104,22 @@ ttk.Checkbutton(
         e_info, variable=variables['Equipment Fault'],
         text='Equipment Fault'
         ).grid(row=2, column=0, sticky=tk.W, pady=5)
+
+# Plant information frame
+p_info = ttk.LabelFrame(drf, text="Plant Data")
+p_info.grid(sticky=(tk.W + tk.E))
+for i in range(3):
+    p_info.columnconfigure(i, weight=1)
+
+# Plants
+variables['Plants'] = tk.IntVar()
+ttk.Label(p_info, text='Plants').grid(row=0, column=0)
+ttk.Spinbox(
+        p_info, textvariable=variables['Plants'],
+        from_=0, to=20, increment=1
+        ).grid(row=1, column=0, sticky=(tk.W + tk.E))
+
+# Blossoms
+
 # Execute mainloop
 root.mainloop()
