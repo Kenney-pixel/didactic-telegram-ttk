@@ -135,5 +135,13 @@ ttk.Spinbox(
         from_=0, to=1000, increment=1
         ).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
+# Min Height
+variables['Min Height'] = tk.DoubleVar()
+ttk.Label(p_info, text='Min Height (cm)').grid(row=2, column=0)
+ttk.Spinbox(
+        p_info, textvariable=variables['Min Height'],
+        from_=0, to=1000, increment=0.01
+        ).grid(row=3, column=0, sticky=(tk.W + tk.E))
+
 # Execute mainloop
 root.mainloop()
