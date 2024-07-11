@@ -152,6 +152,12 @@ ttk.Spinbox(
         ).grid(row=3, column=1, sticky=(tk.W + tk.E))
 
 # Med Height
+variables['Med Height'] = tk.DoubleVar()
+ttk.Label(p_info, text='Med Height (cm)').grid(row=2, column=2)
+ttk.Spinbox(
+        p_info, textvariable=variables['Med Height'],
+        from_=0, to=1000, increment=0.01
+        ).grid(row=3, column=2, sticky=(tk.W + tk.E))
 
 # Execute mainloop
 root.mainloop()
