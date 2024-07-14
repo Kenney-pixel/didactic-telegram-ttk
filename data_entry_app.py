@@ -159,5 +159,9 @@ ttk.Spinbox(
         from_=0, to=1000, increment=0.01
         ).grid(row=3, column=2, sticky=(tk.W + tk.E))
 
+# Notes Section
+ttk.Label(drf, text="Notes").grid()
+notes_inp = tk.Text(drf, width=75, height=10)
+notes_inp.grid(sticky=(tk.W + tk.E))
 # Execute mainloop
 root.mainloop()
