@@ -163,5 +163,15 @@ ttk.Spinbox(
 ttk.Label(drf, text="Notes").grid()
 notes_inp = tk.Text(drf, width=75, height=10)
 notes_inp.grid(sticky=(tk.W + tk.E))
+
+# Save and reset buttons
+buttons = ttk.Frame(drf)
+buttons.grid(sticky=tk.E + tk.W)
+save_button = ttk.Button(buttons, text='Save')
+save_button.pack(side=tk.RIGHT) 
+
+reset_button = ttk.Button(buttons, text='Reset')
+reset_button.pack(side=tk.RIGHT)
+
 # Execute mainloop
 root.mainloop()
