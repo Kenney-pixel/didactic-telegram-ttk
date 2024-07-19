@@ -173,5 +173,11 @@ save_button.pack(side=tk.RIGHT)
 reset_button = ttk.Button(buttons, text='Reset')
 reset_button.pack(side=tk.RIGHT)
 
+# Status Bar
+status_variable = tk.StringVar()
+ttk.Label(
+        root, textvariable=status_variable
+        ).grid(sticky=tk.W + tk.E, row=99, padx=10)
+
 # Execute mainloop
 root.mainloop()
