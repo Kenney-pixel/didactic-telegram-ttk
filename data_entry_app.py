@@ -8,6 +8,9 @@ root.columnconfigure(0, weight=1)
 # Create the dict to hold our variables
 variables = dict()
 
+# Variables to store the number of records saved
+records_saved = 0
+
 # Application heading
 ttk.Label(
         root,
@@ -192,6 +195,15 @@ def on_reset():
     notes_inp.delete('1.0', tk.END)
 
 reset_button.configure(command=on_reset)
+
+def on_save():
+    """Handle the save button clicks"""
+    global records_saved
+
+    # For now, we save to a hardcoded filename with a datestring.
+    # If it doesn't exist, create it,
+    # otherwise just append to the existing file
+
 
 # Execute mainloop
 root.mainloop()
