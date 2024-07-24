@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+from datetime import datetime
+from pathlib import Path
+
 root = tk.Tk()
 root.title('ABQ Data Entry Application')
 root.columnconfigure(0, weight=1)
@@ -203,7 +206,11 @@ def on_save():
     # For now, we save to a hardcoded filename with a datestring.
     # If it doesn't exist, create it,
     # otherwise just append to the existing file
+    datestring = datetime.today().strftime("%Y-%m-%d")
+    filename = f"abq_data_record_{datestring}.csv"
+    newfile = not Path(filename).exists()
 
+    # get the data from the variables
 
 # Execute mainloop
 root.mainloop()
