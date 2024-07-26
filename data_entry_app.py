@@ -211,6 +211,19 @@ def on_save():
     newfile = not Path(filename).exists()
 
     # get the data from the variables
+    data = dict()
+    fault = variables['Equipment Fault'].get()
+    for key, variable in variables.items():
+        if fault and key in ('Light', 'Humidity', 'Temperature'):
+            data[key] = ''
+        else:
+            try:
+                data[key] = variable.get()
+            except tk.TclError:
+                status_variable.set(f'Error in field: {key}, Data was not saved.')
+                return
+
+    # get the Text widget contents separately
 
 # Execute mainloop
 root.mainloop()
