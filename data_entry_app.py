@@ -224,6 +224,9 @@ def on_save():
                 return
 
     # get the Text widget contents separately
+    data['Notes'] = notes_inp.get('1.0', tk.END)
+
+    # append the record to a csv
 
 # Execute mainloop
 root.mainloop()
