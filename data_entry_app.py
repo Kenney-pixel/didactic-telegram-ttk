@@ -4,6 +4,8 @@ from tkinter import ttk
 from datetime import datetime
 from pathlib import Path
 
+import csv
+
 root = tk.Tk()
 root.title('ABQ Data Entry Application')
 root.columnconfigure(0, weight=1)
@@ -227,6 +229,22 @@ def on_save():
     data['Notes'] = notes_inp.get('1.0', tk.END)
 
     # append the record to a csv
+    with open(filename, 'a', newline='') as fh:
+        csvwriter = csv.DictWriter(fh, fieldnames=data.keys())
+        if newfile:
+            csvwriter.writeheader()
+        csvwriter.writerow(data)
+
+    records_saved += 1
+    status_variable.set (
+            f"{records_saved} records saved this session"
+            )
+    on_reset()
+
+save_button.configure(command=on_save)
+
+# reset the form
+on_reset()
 
 # Execute mainloop
 root.mainloop()
