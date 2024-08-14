@@ -246,5 +246,11 @@ save_button.configure(command=on_save)
 # reset the form
 on_reset()
 
+class Application(tk.Tk):
+    """The application root window"""
+    # Next: __init__
+
 # Execute mainloop
-root.mainloop()
+if __name__ == '__main__':
+    app = Application()
+    app.mainloop()
