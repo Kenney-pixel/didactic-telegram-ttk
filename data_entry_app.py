@@ -248,7 +248,16 @@ on_reset()
 
 class Application(tk.Tk):
     """The application root window"""
-    # Next: __init__
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.title("ABQ Data Entry Application")
+        self.columnconfigure(0, weight=1)
+
+        ttk.Label(
+                self, text="ABQ Data Entry Application",
+                font=("TkDefaultFont", 16)
+                ).grid(row=0)
 
 # Execute mainloop
 if __name__ == '__main__':
