@@ -6,51 +6,17 @@ from pathlib import Path
 
 import csv
 
-root = tk.Tk()
-root.title('ABQ Data Entry Application')
-root.columnconfigure(0, weight=1)
-
-# Create the dict to hold our variables
-variables = dict()
-
-# Variables to store the number of records saved
-records_saved = 0
-
-# Application heading
-ttk.Label(
-        root,
-        text='ABQ Data Entry Application',
-        font=('TkDefaultFont', 16)
-        ).grid()
-
-# Build the data record form in a Frame
-drf = ttk.Frame(root)
-drf.grid(padx=10, sticky=(tk.E + tk.W))
-drf.columnconfigure(0, weight=1)
-
-r_info = ttk.LabelFrame(drf, text='Record Information')
-r_info.grid(sticky=(tk.W + tk.E))
-for i in range(3):
-    r_info.columnconfigure(i, weight=1)
-
-# Date
-variables['Date'] = tk.StringVar()
-ttk.Label(r_info, text='Date').grid(row=0, column=0)
-ttk.Entry(r_info, textvariable=variables['Date']).grid(row=1, column=0, sticky=(tk.W + tk.E))
 
 # Time
 time_values = ['8:00', '12:00', '16:00', '20:00']
-variables['Time'] = tk.StringVar()
 ttk.Label(r_info, text='Time').grid(row=0, column=1)
 ttk.Combobox(r_info, textvariable=variables['Time'], values=time_values).grid(row=1, column=1, sticky=(tk.W + tk.E))
 
 # Technician
-variables['Technician'] = tk.StringVar()
 ttk.Label(r_info, text='Technician').grid(row=0, column=2)
 ttk.Entry(r_info, textvariable=variables['Technician']).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
 # Lab
-variables['Lab'] = tk.StringVar()
 ttk.Label(r_info, text='Lab').grid(row=2, column=0)
 labframe = ttk.Frame(r_info)
 for lab in ('A', 'B', 'C'):
@@ -60,7 +26,6 @@ for lab in ('A', 'B', 'C'):
 labframe.grid(row=3, column=0, sticky=(tk.W + tk.E))
 
 # Plot
-variables['Plot'] = tk.IntVar()
 ttk.Label(r_info, text='Plot').grid(row=2, column=1)
 ttk.Combobox(
         r_info,
@@ -69,7 +34,6 @@ ttk.Combobox(
         ).grid(row=3, column=1, sticky=(tk.W + tk.E))
 
 # Seed Sample
-variables['Seed Sample'] = tk.StringVar()
 ttk.Label(r_info, text='Seed Sample').grid(row=2, column=2)
 ttk.Entry(
         r_info,
@@ -83,7 +47,6 @@ for i in range(3):
     e_info.columnconfigure(i, weight=1)
 
 # Humidity
-variables['Humidity'] = tk.DoubleVar()
 ttk.Label(e_info, text="Humdity (g/m^3)").grid(row=0, column=0)
 ttk.Spinbox(
         e_info, textvariable=variables['Humidity'],
@@ -91,7 +54,6 @@ ttk.Spinbox(
         ).grid(row=1, column=0, sticky=(tk.W + tk.E))
 
 # Light
-variables['Light'] = tk.DoubleVar()
 ttk.Label(e_info, text='Light (klx)').grid(row=0, column=1)
 ttk.Spinbox(
         e_info, textvariable=variables['Light'],
@@ -99,7 +61,6 @@ ttk.Spinbox(
         ).grid(row=1, column=1, sticky=(tk.W + tk.E))
 
 # Temperature
-variables['Temperature'] = tk.DoubleVar()
 ttk.Label(e_info, text='Temperature (C)').grid(row=0, column=2)
 ttk.Spinbox(
         e_info, textvariable=variables['Temperature'],
@@ -107,7 +68,6 @@ ttk.Spinbox(
         ).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
 # Equipment Fault
-variables['Equipment Fault'] = tk.BooleanVar(value=False)
 ttk.Checkbutton(
         e_info, variable=variables['Equipment Fault'],
         text='Equipment Fault'
@@ -120,7 +80,6 @@ for i in range(3):
     p_info.columnconfigure(i, weight=1)
 
 # Plants
-variables['Plants'] = tk.IntVar()
 ttk.Label(p_info, text='Plants').grid(row=0, column=0)
 ttk.Spinbox(
         p_info, textvariable=variables['Plants'],
@@ -128,7 +87,6 @@ ttk.Spinbox(
         ).grid(row=1, column=0, sticky=(tk.W + tk.E))
 
 # Blossoms
-variables['Blossoms'] = tk.IntVar()
 ttk.Label(p_info, text='Blossoms').grid(row=0, column=1)
 ttk.Spinbox(
         p_info, textvariable=variables['Blossoms'],
@@ -136,7 +94,6 @@ ttk.Spinbox(
         ).grid(row=1, column=1, sticky=(tk.W + tk.W))
 
 # Fruit
-variables['Fruit'] = tk.IntVar()
 ttk.Label(p_info, text='Fruit').grid(row=0, column=2)
 ttk.Spinbox(
         p_info, textvariable=variables['Fruit'],
@@ -144,7 +101,6 @@ ttk.Spinbox(
         ).grid(row=1, column=2, sticky=(tk.W + tk.E))
 
 # Min Height
-variables['Min Height'] = tk.DoubleVar()
 ttk.Label(p_info, text='Min Height (cm)').grid(row=2, column=0)
 ttk.Spinbox(
         p_info, textvariable=variables['Min Height'],
@@ -152,7 +108,6 @@ ttk.Spinbox(
         ).grid(row=3, column=0, sticky=(tk.W + tk.E))
 
 # Max Height
-variables['Max Height'] = tk.DoubleVar()
 ttk.Label(p_info, text='Max Height (cm)').grid(row=2, column=1)
 ttk.Spinbox(
         p_info, textvariable=variables['Max Height'],
@@ -160,7 +115,6 @@ ttk.Spinbox(
         ).grid(row=3, column=1, sticky=(tk.W + tk.E))
 
 # Med Height
-variables['Med Height'] = tk.DoubleVar()
 ttk.Label(p_info, text='Med Height (cm)').grid(row=2, column=2)
 ttk.Spinbox(
         p_info, textvariable=variables['Med Height'],
@@ -245,19 +199,96 @@ save_button.configure(command=on_save)
 
 # reset the form
 on_reset()
+# Refector starts here
+
+class LabelInput(tk.Frame):
+    """A widget containing a label and input together"""
+
+    def __init__(self, parent, label, var, input_class=ttk.Entry, input_args=None, label_args=None, **kwargs):
+        super().__init__(parent, **kwargs)
+        input_args = input_args or {}
+        label_args = label_args or {}
+        self.variable = var
+        self.variable.label_widget = self
+
+        # setup the label
+        if input_class in (ttk.Checkbutton, ttk.Button):
+            input_args["text"] = label # Buttons don't need label because they are built-in.
+        else:
+            self.label = ttk.Label(self, text=label, **label_args)
+            self.label.grid(row=0, column=0, sticky=(tk.W + tk.E))
+
+        # setup the variable
+
+
+
+class DataRecordForm(tk.Frame):
+    """The input form for our widgets"""
+
+    def _add_frame(self, label, cols=3):
+        """Add a label frame to the form"""
+        frame = ttk.LabelFrame(self, text=label)
+        frame.grid(sticky=tk.W + tk.E)
+        for i in range(cols):
+            frame.columnconfigure(i, weight=1)
+
+        return frame
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # create a dict to keep track of input widgets
+        self._vars = {
+                'Date': tk.StringVar(),
+                'Time': tk.StringVar(),
+                'Technician': tk.StringVar(),
+                'Lab': tk.StringVar(),
+                'Plot': tk.IntVar(),
+                'Seed Sample': tk.StringVar(),
+                'Humidity': tk.DoubleVar(),
+                'Light': tk.DoubleVar(),
+                'Temperature': tk.DoubleVar(),
+                'Equipment Fault': tk.BooleanVar(),
+                'Plants': tk.IntVar(),
+                'Blossoms': tk.IntVar(),
+                'Fruit': tk.IntVar(),
+                'Min Height': tk.DoubleVar(),
+                'Max Height': tk.DoubleVar(),
+                'Med Height': tk.DoubleVar(),
+                'Notes': tk.StringVar(),
+                    }
+
+        # Build the form
+        self.columnconfigure(0, weight=1)
+
+        # Record info section
+        r_info = self._add_frame("Record Information")
+
+        # Line1
+        LabelInput(r_info, "Date", var=self._vars['Date']).grid(row=0, column=0)
+
 
 class Application(tk.Tk):
     """The application root window"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        
+        # title bar
         self.title("ABQ Data Entry Application")
         self.columnconfigure(0, weight=1)
-
+        
+        # heading
         ttk.Label(
                 self, text="ABQ Data Entry Application",
                 font=("TkDefaultFont", 16)
                 ).grid(row=0)
+
+        # main form
+        self.recordform = DataRecordForm(self)
+        self.recordform.grid(row=1, padx=10, sticky=(tk.W + tk.E))
+
+        # status bar
+        # next: do main form first
 
 # Execute mainloop
 if __name__ == '__main__':
