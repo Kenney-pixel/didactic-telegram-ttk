@@ -219,6 +219,27 @@ class LabelInput(tk.Frame):
             self.label.grid(row=0, column=0, sticky=(tk.W + tk.E))
 
         # setup the variable
+        if input_class in (ttk.Checkbutton, ttk.Button, ttk.Radiobutton):
+            input_args["variable"] = self.variable
+        else:
+            input_args["textvariable"] = self.variable
+
+        # set up the input
+        if input_class == ttk.Radiobutton:
+            # for Radiobutton, create one input per value
+            self.input = tk.Frame(self)
+            for v in input_args.pop('values', []):
+                button = ttk.Radiobutton(
+                        self.input, value=v, text=v, **input_args)
+                button.pack(side=tk.LEFT, ipadx=10, ipady=2, expand=True, fill=tk.X)
+        else:
+            self.input = input_class(self, **input_args)
+
+        self.input.grid(row=1, column=0, sticky=(tk.W + tk.E))
+        self.columnconfigure(0, weight=1)
+
+    def grid(self, sticky=(tk.W + tk.E), **kwargs):
+        super.grid(sticky=sticky, **kwargs)
 
 
 
@@ -264,9 +285,13 @@ class DataRecordForm(tk.Frame):
         # Record info section
         r_info = self._add_frame("Record Information")
 
-        # Line1
+        # Line 1
         LabelInput(r_info, "Date", var=self._vars['Date']).grid(row=0, column=0)
+        LabelInput(r_info, "Time", input_class=ttk.Combobox, var=self._vars['Time'],
+                   input_args={"values": ["8:00", "12:00", "16:00", "20:00"]}).grid(row=0, column=1)
+        LabelInput(r_info, "Seed Sample", var=self._vars['Seed Sample']).grid(row=0, column=2)
 
+        #Line 2
 
 class Application(tk.Tk):
     """The application root window"""
