@@ -292,6 +292,45 @@ class DataRecordForm(tk.Frame):
         LabelInput(r_info, "Seed Sample", var=self._vars['Seed Sample']).grid(row=0, column=2)
 
         #Line 2
+        LabelInput(r_info, "Lab", input_class=ttk.Radiobutton, var=self._vars['Lab'],
+                   input_args={"values": ["A", "B", "C"]}
+                   ).grid(row=1, column=0)
+        LabelInput(r_info, "Plot", input_class=ttk.Combobox, var=self._vars['Plot'],
+                   input_args={"values": list(range(1, 21))}
+                   ).grid(row=1, column=1)
+        LabelInput(r_info, "Seed Sample", var=self._vars['Seed Sample']).grid(row=1, column=2)
+
+        # Environment Data
+	e_info = self._add_frame("Environment Data")
+
+	LabelInput(e_info, "Humidity (g/m3)", input_class=ttk.Spinbox, var=self._vars['Humidity'],
+		input_args={"from_": 0.5, "to": 52.0, "increment": .01}
+		).grid(row=0, column=0)
+    LabelInput(e_info, "Light (klx)", input_class=ttk.Spinbox, var=self._vars['Light'], input_args={"from_": 0, "to": 100, "increment": .01}
+               ).grid(row=0, column=2)
+    LabelInput(e_info, "Temperature (C)", input_class=ttk.Spinbox, var=self._vars['Temperature'], input_args={"from_": 4, "to": 40, "increment": .01}).grid(row=0, column=2)
+    LabelInput(e_info, "Equipment Fault", input_class=ttk.Checkbutton, var=self._vars['Equipment Fault']).grid(row=1, column=0, columnspan=3)
+
+    # Plant Data Section
+    p_info = self._add_frame("Plant Data")
+
+    LabelInput(
+            p_info, "Plants", input_class=ttk.Spinbox, var=self._vars['Plants'], input_args={"from_": 0, "to": 20}
+            ).grid(row=0, column=0)
+    LabelInput( p_info, "Blossoms", input_class=ttk.Spinbox, var=self._vars['Blossoms'], 
+               input_args={"from_": 0, "to": 1000}).grid(row=0, column=1)
+    LabelInput( p_info, "Fruit", input_class=ttk.Spinbox, var=self._vars['Fruits'],
+               input_args={"from_": 0, "to": 1000}).grid(row=0, column=2)
+
+    # Height data
+    LabelInput( p_info, "Min Height (cm)", input_class=ttk.Spinbox, var=self._vars['Min Height'],
+               input_args={"from_": 0, "to": 1000, "increment": .01}).grid(row=1, column=0)
+     LabelInput( p_info, "Max Height (cm)", input_class=ttk.Spinbox, var=self._vars['Max Height'],
+               input_args={"from_": 0, "to": 1000, "increment": .01}).grid(row=1, column=0)
+     LabelInput( p_info, "Median Height (cm)", input_class=ttk.Spinbox, var=self._vars['Median Height'],
+               input_args={"from_": 0, "to": 1000, "increment": .01}).grid(row=1, column=0)
+    
+     # Notes Section
 
 class Application(tk.Tk):
     """The application root window"""
